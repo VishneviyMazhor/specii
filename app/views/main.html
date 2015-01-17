@@ -1,0 +1,36 @@
+<div class="cont">
+  <h3 class="">Задачи:</h3>
+  <form role="form"> 
+    <div class="row">
+      <div class="input-group">
+        <input type="text" ng-model="todose" placeholder="Новая задача" class="form-control">
+        <span class="input-group-btn">
+          <md-button class="md-raised md-primary" ng-click="addTodo()" aria-label="Добавить">
+            <ng-md-icon icon="add_circle_outline" size="22"></ng-md-icon>
+          </md-button>
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <p class="search-cntrl input-group form-control">
+        <input type="text" ng-model="q" placeholder="Фильтр..." class="form-control search-inp"/>
+        <span class="input-group-btn">
+          <md-button class="md-hue-1" ng-click="q = ''" aria-label="Удалить">
+            <ng-md-icon icon="highlight_remove" size="22"></ng-md-icon>
+          </md-button>
+        </span>
+      </p>
+    </div>
+    <hr/>
+    <div ui-sortable ng-model="todos" class="example-animate-container">
+      <p class="row input-group animate-repeat c-move" ng-repeat="todose in todos | filter:q as result">
+        <input type="text" ng-model="todose.name" class="form-control">
+        <span class="input-group-btn">
+          <md-button class="md-warn md-raised md-hue-2" ng-click="removeTodo(todose.id)" aria-label="Удалить">
+            <ng-md-icon icon="highlight_remove" size="22"></ng-md-icon>
+          </md-button>
+        </span>
+      </p>
+    </div>
+  </form>
+</div>

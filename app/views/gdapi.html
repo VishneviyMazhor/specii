@@ -1,0 +1,28 @@
+<md-button ng-href="https://docs.google.com/spreadsheets/d/1nxB5jtJjr1tgbCpMQAMwreXSoXeFd74DFLbQ6znEInk/edit#gid=413623201" target="_blank" style="text-decoration:none; float:right; clear:both;" class="md-raised " aria-label="Перейти">Перейти к документу</md-button>
+<p>Google Drive API usage sample. </p>
+<hr>
+<md-card style="min-height:100px;">
+<form role="form" style="clear:both;">
+    <div class="form-group">
+		<div class="col-xs-4">
+			<input type="text" ng-model="name" placeholder="Имя" class="form-control">
+		</div>
+		<div class="col-xs-4">
+			<input type="text" ng-model="lname" placeholder="Фамилия" class="form-control">
+		</div>
+		<div class="col-xs-2">
+			<input type="number" ng-model="msize" placeholder="$$$" class="form-control">
+		</div>
+		<div class="col-xs-1">
+			<md-button ng-if="state.num == 1" class="md-fab md-primary" md-theme="cyan" ng-click="senReq()" aria-label="Полетели">
+				<ng-md-icon icon="send" size="44" style="margin:3px;"></ng-md-icon>
+			</md-button>
+			<md-progress-circular ng-if="state.num == 0" md-mode="indeterminate">ь</md-progress-circular>
+
+		</div>
+	</div>
+</form>
+</md-card>
+<md-card style="min-height:35px;">
+{{state.text}}
+</md-card>

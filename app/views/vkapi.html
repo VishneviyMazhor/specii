@@ -1,0 +1,40 @@
+<p>Vkontakte API usage sample.</p>
+<form role="form"> 
+<div class="row">
+	<textarea type="text" ng-model="message" placeholder="Введите текст сообщения" class="form-control" style="height:100px;"></textarea>
+</div>
+<div class="row">
+	<md-button class="md-raised md-primary" md-theme="cyan" ng-click="wallAdd()" aria-label="Добавить">Отправить</md-button><span>{{sendstate}}</span>
+	<md-button ng-href="https://vk.com/vkapiwall" target="_blank" style="text-decoration:none; float:right;" class="md-raised " aria-label="Перейти">Перейти в группу</md-button>
+</div>
+</form>
+<hr>
+<md-content ng-init="senReq()">
+    <md-list>
+	    <md-item ng-repeat="item in news">
+	        <md-card>
+	        <md-item-content>
+		        <div class="md-tile-left">
+		            <a href="https://vk.com/{{item.author_link || group.screen_name}}" target="_blank"><img ng-src="{{item.face || group.photo_50}}" class="face" title="{{item.author || group.name}}" alt="{{item.author || group.name}}"></a>
+		        </div>
+		        <div class="md-tile-content">
+		            <h4><a href="https://vk.com/{{item.author_link || group.screen_name}}" target="_blank">{{item.author || group.name}}</a></h4>
+		            <p>
+		              {{item.text}}
+		              <div ng-repeat="attachment in item.attachments">
+		              	<img ng-if="attachment.type == 'photo'" src="{{attachment.photo.src}}" title="{{attachment.photo.text}}" alt="{{attachment.photo.text}}">
+		              	<p><a ng-if="attachment.type == 'doc'" href="{{attachment.doc.url}}" title="{{attachment.doc.title}} - {{attachment.doc.size/1024}}KB">{{attachment.doc.title}}</a></p>
+		              </div>
+		            </p>
+		            <p ng-if="item.signer_id"><a href="https://vk.com/{{item.signer_link}}" target="_blank">{{item.signer_name}}</a></p>
+		        </div>
+		        <div class="md-tile-right">
+			          <md-button class="md-warn md-raised" ng-click="removePost(item.id,$index)" aria-label="Удалить">
+			            <ng-md-icon icon="highlight_remove" size="25"></ng-md-icon>
+			          </md-button>
+		        </div>
+	        </md-item-content>
+	        </md-card>
+	    </md-item>
+    </md-list>
+</md-content>
